@@ -4,6 +4,3 @@ class MyDict(dict):
 
     def __getattr__(self, item):
         return self.get(item, None)
-
-    def __init__(self, **kwargs):
-        super(MyDict, self).__init__(**kwargs)

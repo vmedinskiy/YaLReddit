@@ -14,6 +14,7 @@ def create_jwt_generate_response(user):
 def check_keys(dct, keys):
     return all(key in dct for key in keys)
 
+
 def make_resp(message, status):
     resp = make_response(message, status)
     resp.headers['Content-type'] = 'application/json; charset=utf-8'

@@ -87,7 +87,7 @@ def add_post():
 @app.route("/api/register", methods=['POST'])
 def user_register():
     if not request.json:
-        return make_resp(jsonify({'error': 'Empty request'}), 400)
+        return make_resp(jsonify({'message': 'Empty request'}), 400)
     elif not check_keys(request.json, ('username', 'password')):
         return make_resp(jsonify({'message': 'Bad request'}), 400)
     created_user = app.user_repo.request_create(request.json["username"], request.json["password"])
