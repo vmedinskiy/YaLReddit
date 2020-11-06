@@ -22,6 +22,23 @@ app.config['JWT_IDENTITY_CLAIM'] = 'user'
 app.jwt = JWTManager(app)
 
 
+@app.jwt.expired_token_loader
+def my_expired_token_callback():
+    err_json = {
+        "message": "expired token"
+    }
+    return jsonify(err_json), 401
+
+
+@app.jwt.invalid_token_loader
+@app.jwt.unauthorized_loader
+def my_inv_unauth_token_callback(why):
+    err_json = {
+        "message": why
+    }
+    return jsonify(err_json), 401
+
+
 @app.route('/', defaults={'path': ''})
 @app.route('/a/<path:path>')
 @app.route('/u/<path:path>')
